@@ -7,7 +7,7 @@
 
 - **Website**: Built for researchers, scientists, and the general public to monitor and analyze space weather events(make it blue print because we dont have to give monitaization acess to others but try to put the skeleton).
 - **Mobile App**: Lightweight Android/iOS application offering real-time notifications and VTEC estimations.
-- **Goal**: Support solar storm forecasting and space-weather-related warnings.
+- **Goal**: Support space-weather-related warnings.
 
 ---
 
