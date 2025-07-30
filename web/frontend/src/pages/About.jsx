@@ -60,7 +60,7 @@ const About = () => {
           className="absolute inset-0 bg-cover bg-center brightness-75"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1470&q=80')",
+              "url('about.avif')",
           }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
@@ -107,7 +107,7 @@ const About = () => {
               <img
                 alt="Scientist working"
                 className="rounded-lg shadow-lg"
-                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+                src="about_mv.jpg"
               />
             </div>
           </div>

@@ -9,7 +9,7 @@ const NewsEvents = () => {
         <div className="md:w-1/2">
           <img
             className="h-64 w-full object-cover md:h-full"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSIcOoaDhUg34FtUPd6mRsgluNkwJjW-z-UM-dn-VjlU1iOWY8JptCul1t3bWQrgaaylKvXN0aji38m5D0VH9OdLMmdReqSvDzTLOscj4NMKePqDt6RcU-WlWf5gpsGngg9pVg-DQ4gNdruu57KtkdkpbnqLlIFHcca7Fk9ALd1R9XsQP2Xw5mm2goYcVq2b0jKhxq0YRLNQTClqbSu0_ZvjxJjJhuTnpsZ09iaGi1eaatysjtW1axCNOPvYmRkNMsACLl0A0IPZ8"
+            src="news&events.png"
             alt="Conference"
           />
         </div>
