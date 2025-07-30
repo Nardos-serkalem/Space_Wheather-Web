@@ -16,7 +16,8 @@ const Navbar = () => {
   ];
 
   // Pages that need solid background from the start
-  const solidBgPages = ["/conference", "/staff-profile", "/space-weather"];
+  // Removed '/space-weather' to allow transparent start there
+  const solidBgPages = ["/conference", "/staff-profile"];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,8 +28,7 @@ const Navbar = () => {
   }, []);
 
   const alwaysSolid = solidBgPages.includes(location.pathname);
-  const bgClass =
-    scrolled || alwaysSolid ? "bg-[#0E1B3D] shadow-md" : "bg-transparent";
+  const bgClass = scrolled || alwaysSolid ? "bg-[#0E1B3D] shadow-md" : "bg-transparent";
 
   return (
     <header
@@ -90,20 +90,21 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {open && (
-        <nav className="md:hidden bg-[#0E1B3D] px-6 py-4 space-y-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              onClick={() => setOpen(false)}
-              className="block text-[#E69D4A] font-medium hover:text-[#E69D4A] transition"
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
-      )}
+{open && (
+  <nav className="md:hidden bg-[#0E1B3D] px-6 py-4 space-y-4">
+    {navLinks.map((link) => (
+      <Link
+        key={link.name}
+        to={link.path}
+        onClick={() => setOpen(false)}
+        className="block text-white font-medium hover:text-[#E69D4A] transition"
+      >
+        {link.name}
+      </Link>
+    ))}
+  </nav>
+)}
+
     </header>
   );
 };
