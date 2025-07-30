@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Breadcrumbs from "../components/Breadcrumbs";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { Line, Bar } from "react-chartjs-2";
@@ -194,8 +193,7 @@ function SpaceWeather() {
       {/* Space Weather Event Ticker */}
 
       <div className="w-full font-[Poppins] text-gray-800 bg-white min-h-screen flex flex-col mt-8">
-        {/* Breadcrumbs */}
-        <Breadcrumbs />
+       
 
         <main className="container mx-auto px-6 sm:px-12 flex-1">
           {/* Alert Banner (UI only) */}
