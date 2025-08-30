@@ -13,6 +13,8 @@ import Login from "./admin/pages/Login";
 import Dashboard from "./admin/pages/Dashboard";
 import ManageResearch from "./admin/pages/ManageResearch";
 import ManageEvents from "./admin/pages/ManageEvents";
+import ManageStaff from "./admin/pages/ManageStaff";
+
 
 // Public pages
 import Home from "./pages/Home";
@@ -21,6 +23,8 @@ import Research from "./pages/Research";
 import Conference from "./pages/Conference";
 import StaffProfile from "./pages/StaffProfile";
 import SpaceWeather from "./pages/SpaceWeather";
+import Publications from "./pages/Publications";
+import ResearchDomains from "./pages/ResearchDomains";
 
 import "./index.css";
 
@@ -37,9 +41,11 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/research" element={<Research />} />
+          <Route path="/research/domains" element={<ResearchDomains />} />
           <Route path="/conference" element={<Conference />} />
           <Route path="/staff-profile" element={<StaffProfile />} />
           <Route path="/space-weather" element={<SpaceWeather />} />
+          <Route path="/publications" element={<Publications />} />
 
           {/* Redirect /admin to /admin/login */}
           <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
@@ -72,6 +78,16 @@ function AppContent() {
               </RequireAuth>
             }
           />
+          <Route
+            path="/admin/manage-staff"
+            element={
+              <RequireAuth>
+                <ManageStaff />
+              </RequireAuth>
+            }
+          />
+
+          
         </Routes>
       </main>
       {!isAdminRoute && <Footer />}

@@ -45,6 +45,8 @@ function Footer() {
               { name: "Home", path: "/" },
               { name: "About", path: "/about" },
               { name: "Research", path: "/research" },
+              { name: "Research Domains", path: "/research/domains" },
+              { name: "Publications", path: "/publications" },
               { name: "Conference", path: "/conference" },
               { name: "Space Weather", path: "/space-weather" },
               { name: "Staff", path: "/staff-profile" },

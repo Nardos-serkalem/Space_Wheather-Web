@@ -1,51 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { fetchStaff } from "../admin/utils/api";
 
 const StaffProfile = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMember, setSelectedMember] = useState(null);
+  const [teamMembers, setTeamMembers] = useState([]);
 
-  const teamMembers = [
-    {
-      name: "Dr. Amanuel Bekele",
-      position: "Senior Astrophysicist",
-      bio: "Dr. Amanuel specializes in stellar evolution and galaxy formation with over 15 years of research experience.",
-      image:
-        "",
-    },
-    {
-      name: "Dr. Tsehay Alemu",
-      position: "Planetary Geologist",
-      bio: "Expert in Martian surface studies and planetary tectonics, leading multiple field missions in Ethiopia.",
-      image:
-        "",
-    },
-    {
-      name: "Dr. Mekdes Gebremariam",
-      position: "Astrobiologist",
-      bio: "Focused on extremophiles and the search for life beyond Earth, Mekdes leads astrobiology outreach programs.",
-      image:
-        "",
-    },
-    {
-      name: "Dr. Samuel Tesfaye",
-      position: "Spacecraft Engineer",
-      bio: "Designs and tests spacecraft instrumentation with experience at international space agencies.",
-      image:
-        "",
-    },
-    {
-      name: "Dr. Selamawit Haile",
-      position: "Cosmochemist",
-      bio: "Researches cosmic dust and meteorite composition to better understand the origins of the solar system.",
-      image:
-        "",
-    },
-  ];
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const data = await fetchStaff();
+        setTeamMembers(data);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    load();
+  }, []);
 
   const filteredTeamMembers = teamMembers.filter(
     (member) =>
-      member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      member.position.toLowerCase().includes(searchQuery.toLowerCase())
+      (member.fullName || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (member.role || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (member.education || "").toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -63,7 +40,7 @@ const StaffProfile = () => {
         <div className="max-w-md mx-auto mb-12">
           <input
             type="text"
-            placeholder="Search by name or position..."
+            placeholder="Search by name, role, or education..."
             className="w-full border border-gray-300 rounded-md px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E69D4A]"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -78,15 +55,15 @@ const StaffProfile = () => {
               onClick={() => setSelectedMember(member)}
               className="group bg-gray-50 rounded-2xl p-6 flex flex-col items-center text-center shadow-md hover:shadow-xl transition-shadow focus:outline-none"
             >
-              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#2E5979] group-hover:border-[#E69D4A] transition-colors mb-4">
+              <div className="w-32 h-32 rounded-full overflow-hidden shadow-md ring-1 ring-gray-200 mb-4">
                 <img
                   src={member.image}
-                  alt={member.name}
+                  alt={member.fullName}
                   className="object-cover w-full h-full"
                 />
               </div>
-              <h3 className="text-xl font-semibold text-[#2E5979] mb-1">{member.name}</h3>
-              <p className="text-[#E69D4A] font-medium">{member.position}</p>
+              <h3 className="text-xl font-semibold text-[#2E5979] mb-1">{member.fullName}</h3>
+              <p className="text-[#E69D4A] font-medium">{member.role}</p>
             </button>
           ))}
         </div>
@@ -110,15 +87,21 @@ const StaffProfile = () => {
               </button>
 
               <div className="flex flex-col items-center">
-                <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-[#2E5979] mb-6">
+                <div className="w-36 h-36 rounded-full overflow-hidden shadow-md ring-1 ring-gray-200 mb-6">
                   <img
                     src={selectedMember.image}
-                    alt={selectedMember.name}
+                    alt={selectedMember.fullName}
                     className="object-cover w-full h-full"
                   />
                 </div>
-                <h3 className="text-3xl font-bold text-[#2E5979] mb-2">{selectedMember.name}</h3>
-                <p className="text-[#E69D4A] text-xl font-semibold mb-6">{selectedMember.position}</p>
+                <h3 className="text-3xl font-bold text-[#2E5979] mb-2">{selectedMember.fullName}</h3>
+                <p className="text-[#E69D4A] text-xl font-semibold mb-2">{selectedMember.role}</p>
+                {selectedMember.education && (
+                  <p className="text-gray-600 mb-2">Education: {selectedMember.education}</p>
+                )}
+                {selectedMember.email && (
+                  <a href={`mailto:${selectedMember.email}`} className="text-[#2E5979] font-medium mb-4">{selectedMember.email}</a>
+                )}
                 <p className="text-gray-700 leading-relaxed text-center">{selectedMember.bio}</p>
               </div>
             </div>
