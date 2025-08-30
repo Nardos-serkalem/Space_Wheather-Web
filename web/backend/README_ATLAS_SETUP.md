@@ -5,14 +5,10 @@
 1. **Create your .env file**: Copy the example and add your Atlas credentials
 2. **Test connection**: Run `npm run test-connection`
 
-## For New Team Members
+## 
 
-### Step 1: Get MongoDB Atlas Access
-- Ask the project admin for MongoDB Atlas credentials
-- Or create your own Atlas account and get added to the project
-
-### Step 2: Create Your Local .env File
-1. Copy `.env.example` to your local machine and rename it to `.env`
+### Step 1: Create Your Local .env File
+1. Create your .env file
 2. Update the `MONGO_URI` with your credentials:
 
 ```
@@ -20,7 +16,7 @@ PORT=5000
 MONGO_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@atlascluster.y8sbi1n.mongodb.net/space-weather?retryWrites=true&w=majority
 ```
 
-### Step 3: Test Your Connection
+### Step 2: Test Your Connection
 ```bash
 npm run test-connection
 ```
