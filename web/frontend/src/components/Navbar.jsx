@@ -38,7 +38,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/">
-            <img src="SSGI_Logo.png" alt="Logo" className="h-14 w-auto" />
+            <img src="/SSGI_Logo.png" alt="Logo" className="h-14 w-auto" />
           </Link>
         </div>
 
