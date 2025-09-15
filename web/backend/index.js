@@ -7,9 +7,9 @@ import { fileURLToPath } from "url";
 
 // Import routes (ES module syntax)
 import researchRoutes from "./routes/researchRoutes.js";
-import eventRoutes from "./routes/eventRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import staffRoutes from "./routes/staffRoutes.js";
+import conferenceRoutes from "./routes/conferenceRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -20,7 +20,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Static uploads
+// Static uploads (serve from project root uploads directory)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
@@ -44,9 +44,9 @@ export const db = mongoose.connection;
 
 // Routes
 app.use("/api/research", researchRoutes);
-app.use("/api/events", eventRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/staff", staffRoutes);
+app.use("/api/conferences", conferenceRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;

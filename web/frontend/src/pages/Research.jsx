@@ -39,7 +39,7 @@ const Research = () => {
     return value;
   };
 
-  const filters = ["All", "Ionospheric", "Space Weather", "Planetary Science"];
+  const filters = ["All", "Ionospheric", "Space Weather", "Planetary Science", "Geomagnetism"];
 
   useEffect(() => {
     const loadData = async () => {
@@ -192,28 +192,41 @@ const Research = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <div
-                key={project._id || index}
-                className="flex flex-col bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group"
-              >
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((project, index) => (
                 <div
-                  className="w-full aspect-video bg-center bg-cover transition-transform duration-300 group-hover:scale-105"
-                  style={{ backgroundImage: `url('${project.image}')` }}
-                />
-                <div className="p-5">
-                  <span className="text-xs font-semibold uppercase text-[#E69D4A]">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-semibold mt-2 text-gray-900">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-700 text-base mt-3 leading-relaxed">
-                    {project.description}
-                  </p>
+                  key={project._id || index}
+                  className="flex flex-col bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group"
+                >
+                  <div
+                    className="w-full aspect-video bg-center bg-cover transition-transform duration-300 group-hover:scale-105"
+                    style={{ backgroundImage: `url('${project.image}')` }}
+                  />
+                  <div className="p-5">
+                    <span className="text-xs font-semibold uppercase text-[#E69D4A]">
+                      {project.category}
+                    </span>
+                    <h3 className="text-xl font-semibold mt-2 text-gray-900">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-700 text-base mt-3 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <div className="text-gray-500 text-lg">
+                  {activeFilter === "All" 
+                    ? "No projects available at the moment." 
+                    : `No projects found in the "${activeFilter}" category.`}
+                </div>
+                <div className="text-gray-400 text-sm mt-2">
+                  Check back later or try a different category filter.
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </section>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FiHome, FiDatabase, FiCalendar, FiUsers } from "react-icons/fi";
+import { FiHome, FiDatabase, FiUsers, FiBookOpen } from "react-icons/fi";
 
 const Sidebar = () => {
 
@@ -10,7 +10,7 @@ const Sidebar = () => {
     }`;
 
   return (
-    <aside className="w-64 min-h-screen bg-[#0E1B3D] text-white flex flex-col p-6">
+    <aside className="w-64 h-screen bg-[#0E1B3D] text-white flex flex-col p-6">
       {/* Logo */}
       <NavLink to="/admin/dashboard" className="mb-6 flex justify-center">
         <img src="/SSGI_Logo.png" alt="Logo" className="h-16 w-auto" />
@@ -18,25 +18,25 @@ const Sidebar = () => {
 
       <h2 className="text-2xl font-bold text-center mb-8">Admin Panel</h2>
 
-      <nav className="flex flex-col gap-2 flex-grow">
+      <nav className="flex flex-col gap-2 flex-1">
         <NavLink to="/admin/dashboard" className={linkClass}>
           <FiHome /> Dashboard
         </NavLink>
         <NavLink to="/admin/manage-research" className={linkClass}>
           <FiDatabase /> Manage Research
         </NavLink>
-        <NavLink to="/admin/manage-events" className={linkClass}>
-          <FiCalendar /> Manage Events
-        </NavLink>
         <NavLink to="/admin/manage-staff" className={linkClass}>
           <FiUsers /> Manage Staff
+        </NavLink>
+        <NavLink to="/admin/manage-conferences" className={linkClass}>
+          <FiBookOpen /> Manage Conferences
         </NavLink>
       </nav>
 
       {/* Back to public site */}
       <NavLink
         to="/"
-        className="mt-auto block text-center bg-[#E69D4A] hover:bg-[#cf893b] text-white py-2 rounded font-semibold transition"
+        className="block text-center bg-[#E69D4A] hover:bg-[#cf893b] text-white py-2 rounded font-semibold transition"
       >
         Back to Public Site
       </NavLink>

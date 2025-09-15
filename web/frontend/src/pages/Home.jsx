@@ -150,7 +150,7 @@ const Home = () => {
 </div>
       </motion.section>
 
-      {/* NEWS & EVENTS Section */}
+      {/* NEWS & CONFERENCES Section */}
       <main className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-24 space-y-32">
         <motion.section
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
