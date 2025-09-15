@@ -12,8 +12,8 @@ import RequireAuth from "./admin/routes/RequireAuth";
 import Login from "./admin/pages/Login";
 import Dashboard from "./admin/pages/Dashboard";
 import ManageResearch from "./admin/pages/ManageResearch";
-import ManageEvents from "./admin/pages/ManageEvents";
 import ManageStaff from "./admin/pages/ManageStaff";
+import ManageConferences from "./admin/pages/ManageConferences";
 
 
 // Public pages
@@ -71,18 +71,18 @@ function AppContent() {
             }
           />
           <Route
-            path="/admin/manage-events"
-            element={
-              <RequireAuth>
-                <ManageEvents />
-              </RequireAuth>
-            }
-          />
-          <Route
             path="/admin/manage-staff"
             element={
               <RequireAuth>
                 <ManageStaff />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/manage-conferences"
+            element={
+              <RequireAuth>
+                <ManageConferences />
               </RequireAuth>
             }
           />

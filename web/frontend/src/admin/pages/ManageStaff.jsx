@@ -7,13 +7,15 @@ const ManageStaff = () => {
 	const [editing, setEditing] = useState(null);
 	const [form, setForm] = useState({ fullName: "", role: "", education: "", email: "", bio: "", image: "" });
 	const [uploading, setUploading] = useState(false);
+    const [message, setMessage] = useState({ type: "", text: "" });
 
 	const load = async () => {
 		try {
 			const data = await fetchStaff();
 			setStaff(data);
 		} catch (e) {
-			console.error(e);
+			setMessage({ type: "error", text: e?.message || "Failed to load staff." });
+			setTimeout(() => setMessage({ type: "", text: "" }), 5000);
 		}
 	};
 
@@ -32,8 +34,11 @@ const ManageStaff = () => {
 		try {
 			const { url } = await uploadStaffImage(file);
 			setForm((prev) => ({ ...prev, image: url }));
+			setMessage({ type: "success", text: "Image uploaded successfully." });
+			setTimeout(() => setMessage({ type: "", text: "" }), 3000);
 		} catch (err) {
-			console.error(err);
+			setMessage({ type: "error", text: err?.message || "Failed to upload image. Please try again." });
+			setTimeout(() => setMessage({ type: "", text: "" }), 5000);
 		} finally {
 			setUploading(false);
 		}
@@ -43,29 +48,48 @@ const ManageStaff = () => {
 		try {
 			if (editing) {
 				await updateStaff(editing._id, form);
+				setMessage({ type: "success", text: "Staff updated successfully!" });
 			} else {
 				await addStaff(form);
+				setMessage({ type: "success", text: "Staff added successfully!" });
 			}
 			setShowModal(false);
 			setEditing(null);
 			await load();
+			setTimeout(() => setMessage({ type: "", text: "" }), 3000);
 		} catch (e) {
-			console.error(e);
+			setMessage({ type: "error", text: e?.message || "Failed to save staff. Please try again." });
+			setTimeout(() => setMessage({ type: "", text: "" }), 5000);
 		}
 	};
 
 	const handleDelete = async (id) => {
+		if (!window.confirm("Are you sure you want to delete this staff member?")) return;
 		try {
 			await deleteStaff(id);
+			setMessage({ type: "success", text: "Staff deleted successfully!" });
 			await load();
+			setTimeout(() => setMessage({ type: "", text: "" }), 3000);
 		} catch (e) {
-			console.error(e);
+			setMessage({ type: "error", text: e?.message || "Failed to delete staff. Please try again." });
+			setTimeout(() => setMessage({ type: "", text: "" }), 5000);
 		}
 	};
 
 	return (
 		<div className="w-full font-[Poppins] p-6 bg-gray-50 min-h-screen">
 			<h1 className="text-3xl font-bold text-[#2E5979] mb-6">Manage Staff</h1>
+
+			{/* Message Display */}
+			{message.text && (
+				<div className={`mb-4 p-4 rounded-md ${
+					message.type === "success"
+						? "bg-green-100 text-green-800 border border-green-200"
+						: "bg-red-100 text-red-800 border border-red-200"
+				}`}>
+					{message.text}
+				</div>
+			)}
 
 			<div className="flex justify-between mb-4">
 				<h2 className="text-xl font-bold text-gray-700">Team Members</h2>

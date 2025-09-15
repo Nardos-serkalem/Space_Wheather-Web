@@ -177,41 +177,52 @@ export const uploadStaffImage = async (file) => {
   return res.json(); // { url }
 };
 
-// ----------------- Events -----------------
-export const fetchEventsList = async () => {
-  const res = await fetch(`${API_BASE}/events`);
-  if (!res.ok) throw new Error("Failed to fetch events list");
+export const uploadResearchImage = async (file) => {
+  const formData = new FormData();
+  formData.append("image", file);
+  const res = await fetch(`${API_BASE}/research/upload`, {
+    method: "POST",
+    body: formData,
+  });
+  if (!res.ok) throw new Error("Failed to upload image");
+  return res.json(); // { url }
+};
+
+// ----------------- Conferences -----------------
+export const fetchConferencesList = async () => {
+  const res = await fetch(`${API_BASE}/conferences`);
+  if (!res.ok) throw new Error("Failed to fetch conferences list");
   return res.json();
 };
 
-export const fetchEventById = async (id) => {
-  const res = await fetch(`${API_BASE}/events/${id}`);
-  if (!res.ok) throw new Error("Failed to fetch event");
+export const fetchConferenceById = async (id) => {
+  const res = await fetch(`${API_BASE}/conferences/${id}`);
+  if (!res.ok) throw new Error("Failed to fetch conference");
   return res.json();
 };
 
-export const addEvent = async (data) => {
-  const res = await fetch(`${API_BASE}/events`, {
+export const addConference = async (data) => {
+  const res = await fetch(`${API_BASE}/conferences`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  if (!res.ok) throw new Error("Failed to add event");
+  if (!res.ok) throw new Error("Failed to add conference");
   return res.json();
 };
 
-export const updateEvent = async (id, data) => {
-  const res = await fetch(`${API_BASE}/events/${id}`, {
+export const updateConference = async (id, data) => {
+  const res = await fetch(`${API_BASE}/conferences/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  if (!res.ok) throw new Error("Failed to update event");
+  if (!res.ok) throw new Error("Failed to update conference");
   return res.json();
 };
 
-export const deleteEvent = async (id) => {
-  const res = await fetch(`${API_BASE}/events/${id}`, { method: "DELETE" });
-  if (!res.ok) throw new Error("Failed to delete event");
+export const deleteConference = async (id) => {
+  const res = await fetch(`${API_BASE}/conferences/${id}`, { method: "DELETE" });
+  if (!res.ok) throw new Error("Failed to delete conference");
   return res.json();
 };

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NewsEvents = () => {
   return (
     <section className="mb-24 w-full" id="news">
-      <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">News & Events</h2>
+      <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">News & Conferences</h2>
       <div className="bg-white rounded-lg overflow-hidden shadow-lg md:flex border border-gray-200">
         <div className="md:w-1/2">
           <img
